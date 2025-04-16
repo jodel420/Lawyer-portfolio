@@ -5,7 +5,7 @@ import { Menu, X, Scale } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
-
+import { useRouter } from "next/router";
 interface NavbarProps {
   onNavigate: {
     about: () => void
@@ -14,15 +14,17 @@ interface NavbarProps {
     caseResults: () => void
     testimonials: () => void
     contact: () => void
-    
+    // admin: () => void
   }
 }
 
-export function Navbar({ onNavigate }: NavbarProps) {
+export function Navbar({ onNavigate, redirectToAdmin }: { onNavigate: NavbarProps['onNavigate'], redirectToAdmin: () => void }) {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
+
   // Handle scroll event to change navbar style
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -90,8 +92,16 @@ export function Navbar({ onNavigate }: NavbarProps) {
           >
             Testimonials
           </button>
+          
           <Button onClick={() => onNavigate.contact()} size="sm" className="bg-white text-slate-900 hover:bg-slate-200">
             Contact Us
+          </Button>
+          <Button
+            onClick={redirectToAdmin}
+            size="sm"
+            className="bg-white text-slate-900 hover:bg-slate-200"
+          >
+            Admin
           </Button>
         </nav>
 
@@ -153,6 +163,9 @@ export function Navbar({ onNavigate }: NavbarProps) {
               >
                 Contact Us
               </Button>
+              <Button onClick={redirectToAdmin} size="sm" className="bg-white text-slate-900 hover:bg-slate-200">
+            Admin
+          </Button>
             </div>
           </motion.div>
         )}
