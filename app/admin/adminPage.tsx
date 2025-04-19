@@ -92,14 +92,10 @@
 
 
 "use client";
-
 export default function Admin() {
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
-      <h1 className="text-3xl font-bold text-slate-900">Admin Dashboard</h1>
-      <div className="mt-4 p-4 bg-blue-500 text-white rounded">
-        Testing Tailwind CSS
-      </div>
-    </div>
+    <div className="bg-blue-500 text-white p-4 m-4 rounded">
+    Tailwind Test
+  </div>
   );
 }
